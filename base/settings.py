@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xcxg+xjz=t%7v%@nkr2^r-+bw%sy)boz_zcyqwm&yrei5)pmxi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -123,3 +124,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    #from Heroku - for static
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),   #changed from staticfiles to static to enable static files on 'base'
 )
+
+#added for Heroku database support
+django_heroku.settings(locals())
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
