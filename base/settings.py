@@ -125,6 +125,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),   #changed from staticfiles to static to enable static files on 'base'
 )
 
+SITE_ID = 1
+
 #added for Heroku database support
 django_heroku.settings(locals())
 
